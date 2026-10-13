@@ -110,9 +110,6 @@ section{padding:72px 0;scroll-margin-top:64px}
 .phone.full .screen iframe{height:760px}
 .screen .tap{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;justify-content:center;padding-bottom:22px;text-decoration:none;background:transparent;border:0;cursor:pointer;width:100%}
 .screen .tap span{background:rgba(15,36,64,.88);color:#fff;font:700 14px var(--body);padding:8px 14px;border-radius:999px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
-.live{position:absolute;top:110px;right:-10px;z-index:4;display:flex;align-items:center;gap:6px;background:var(--harissa);color:#fff;font:700 12px var(--body);padding:5px 11px;border-radius:999px;transform:rotate(4deg)}
-.live i{width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.4s infinite}
-@keyframes blink{50%{opacity:.25}}
 .wv{width:38px;height:28px;border-radius:9px;display:grid;place-items:center}
 .wv svg{width:30px;height:22px}
 
@@ -156,7 +153,6 @@ section{padding:72px 0;scroll-margin-top:64px}
 .beaches .grid{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;margin-top:32px}
 .beaches .phone{--w:330px}
 .mapwrap{position:relative;display:flex;justify-content:center}
-.mapwrap .live{top:40px;right:-14px}
 .coasts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .coast{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 16px}
 .coast b{font:800 19px var(--display);color:var(--blue);display:block}
@@ -167,7 +163,7 @@ section{padding:72px 0;scroll-margin-top:64px}
 .maphint{margin-top:18px;color:var(--muted)}
 .maphint b{color:var(--ink)}
 .soon{margin-top:16px;display:flex;gap:12px;align-items:center;background:var(--sand);border-radius:18px;padding:14px 16px;font-weight:700}
-.soon .tn{font-size:26px}
+.soon .tn{flex:none;width:30px;height:20px;display:block;box-shadow:0 0 0 1px rgba(15,36,64,.08);border-radius:3px}
 @media (max-width:900px){ .beaches .grid{grid-template-columns:1fr;gap:28px} .beaches .phone{--w:300px} }
 @media (max-width:520px){ .coasts{grid-template-columns:1fr} }
 
@@ -178,7 +174,6 @@ section{padding:72px 0;scroll-margin-top:64px}
 .help .grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;margin-top:32px}
 .help .phone{--w:300px}
 .help .phonewrap{position:relative;display:flex;justify-content:center}
-.help .live{top:40px;right:-14px}
 .qs{display:flex;flex-direction:column;gap:10px}
 .qrow{background:rgba(255,255,255,.9);border-radius:20px;padding:14px 16px;display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center}
 .qrow b{font:800 20px/1 var(--display)}
@@ -269,7 +264,6 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
           <a class="tap js-app" href="https://rzi11.github.io/WinN3oum/" tabindex="-1"><span>Touche pour ouvrir l'app</span></a>
         </div>
       </div>
-      <span class="live"><i></i>En direct</span>
     </div>
   </div>
   <svg class="hero-sea" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
@@ -381,12 +375,11 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
             <button class="tap" type="button" id="map-tap"><span>Touche pour jouer avec la carte</span></button>
           </div>
         </div>
-        <span class="live"><i></i>En direct</span>
       </div>
       <div>
         <div class="coasts" id="coasts"></div>
         <p class="maphint">En haut de la carte, choisis <b>Tout</b>, <b>Mouj</b>, <b>Zarga</b> ou <b>Algues</b>, puis glisse les fiches en bas : <b>Yalla</b> t'emmène à la plage.</p>
-        <p class="soon"><span class="tn">🇹🇳</span>Et bientôt toute la Tunisie : Hammamet, Mahdia, Kerkennah, Tabarka…</p>
+        <p class="soon"><svg class="tn" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" rx="3" fill="#E70013"/><circle cx="15" cy="10" r="5.6" fill="#fff"/><circle cx="15.6" cy="10" r="4.2" fill="#E70013"/><circle cx="16.7" cy="10" r="3.4" fill="#fff"/><polygon points="19.50,10.00 17.97,10.56 17.91,12.19 16.91,10.90 15.34,11.35 16.25,10.00 15.34,8.65 16.91,9.10 17.91,7.81 17.97,9.44" fill="#E70013"/></svg>Et bientôt toute la Tunisie : Hammamet, Mahdia, Kerkennah, Tabarka…</p>
       </div>
     </div>
   </div>
@@ -415,7 +408,6 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
             <a class="tap" href="https://rzi11.github.io/WinN3oum/?vue=retour" tabindex="-1"><span>Ouvrir l'app pour répondre</span></a>
           </div>
         </div>
-        <span class="live"><i></i>En direct</span>
       </div>
     </div>
   </div>
