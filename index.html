@@ -180,17 +180,17 @@ section{padding:72px 0;scroll-margin-top:64px}
 .help .phonewrap{position:relative;display:flex;justify-content:center}
 .help .live{top:40px;right:-14px}
 .qs{display:flex;flex-direction:column;gap:10px}
-.q{background:rgba(255,255,255,.9);border-radius:20px;padding:14px 16px;display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center}
-.q b{font:800 20px/1 var(--display)}
-.q b small{display:block;font:400 13px/1.2 var(--body);color:#2D4A47;margin-top:3px}
-.q .ans{display:flex;flex-wrap:wrap;gap:6px 12px}
-.q .ans span{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:700}
-.q .ans .ico{width:28px;height:28px}
-.q .ans .sw{width:26px;height:18px}
+.qrow{background:rgba(255,255,255,.9);border-radius:20px;padding:14px 16px;display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center}
+.qrow b{font:800 20px/1 var(--display)}
+.qrow b small{display:block;font:400 13px/1.2 var(--body);color:#2D4A47;margin-top:3px}
+.qrow .ans{display:flex;flex-wrap:wrap;gap:6px 12px}
+.qrow .ans span{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:700}
+.qrow .ans .ico{width:28px;height:28px}
+.qrow .ans .sw{width:26px;height:18px}
 .wselt-line{margin-top:18px;font-size:17px;color:#0B4A43}
 .wselt{display:inline-block;background:var(--blue);color:#fff;font:800 17px var(--display);padding:4px 14px;border-radius:999px;margin:0 2px}
 @media (max-width:900px){ .help .grid{grid-template-columns:1fr;gap:28px} .help .phonewrap{order:-1} }
-@media (max-width:480px){ .q{grid-template-columns:1fr} }
+@media (max-width:480px){ .qrow{grid-template-columns:1fr} }
 
 /* ——— Sources ——— */
 .sources .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
@@ -401,10 +401,10 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
     <div class="grid">
       <div>
         <div class="qs">
-          <div class="q rise"><b>Mouj<small>les vagues</small></b><span class="ans"><span><i class="ico" data-mer="good"></i>Plate</span><span><i class="ico" data-mer="warn"></i>Ça bouge</span><span><i class="ico" data-mer="bad"></i>Vagues</span></span></div>
-          <div class="q rise"><b>Zarga<small>la couleur de l'eau</small></b><span class="ans"><span><i class="sw" style="background:#14B8A6"></i>Turquoise</span><span><i class="sw" style="background:#7FE3D6"></i>Moyenne</span><span><i class="sw" style="background:#D6CBB5"></i>Trouble</span></span></div>
-          <div class="q rise"><b>Algues</b><span class="ans"><span><i class="ico" data-alg="a"></i>Aucune</span><span><i class="ico" data-alg="s"></i>Sur le sable</span><span><i class="ico" data-alg="e"></i>Dans l'eau</span></span></div>
-          <div class="q rise"><b>Méduses</b><span class="ans"><span>Rien vu</span><span>J'en ai vu</span><span>Pas regardé</span></span></div>
+          <div class="qrow rise"><b>Mouj<small>les vagues</small></b><span class="ans"><span><i class="ico" data-mer="good"></i>Plate</span><span><i class="ico" data-mer="warn"></i>Ça bouge</span><span><i class="ico" data-mer="bad"></i>Vagues</span></span></div>
+          <div class="qrow rise"><b>Zarga<small>la couleur de l'eau</small></b><span class="ans"><span><i class="sw" style="background:#14B8A6"></i>Turquoise</span><span><i class="sw" style="background:#7FE3D6"></i>Moyenne</span><span><i class="sw" style="background:#D6CBB5"></i>Trouble</span></span></div>
+          <div class="qrow rise"><b>Algues</b><span class="ans"><span><i class="ico" data-alg="a"></i>Aucune</span><span><i class="ico" data-alg="s"></i>Sur le sable</span><span><i class="ico" data-alg="e"></i>Dans l'eau</span></span></div>
+          <div class="qrow rise"><b>Méduses</b><span class="ans"><span>Rien vu</span><span>J'en ai vu</span><span>Pas regardé</span></span></div>
         </div>
         <p class="wselt-line">Dans l'app : le bouton <span class="wselt">Wselt !</span> sur la page de ta plage, ou l'onglet <b>Mon retour</b>.</p>
       </div>
