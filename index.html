@@ -55,7 +55,7 @@ h2{font-size:clamp(30px,5.4vw,46px);color:var(--blue)}
 h3{font-size:22px}
 p{margin:0}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
-section{padding:72px 0}
+section{padding:72px 0;scroll-margin-top:64px}
 .kicker{display:inline-block;font:700 14px var(--body);color:var(--turq-ink);background:#D4F3EE;padding:4px 12px;border-radius:999px;margin-bottom:12px}
 .lead{font-size:19px;color:var(--muted);max-width:40em;margin-top:12px}
 .logo{font:800 24px/1 var(--display);color:var(--blue);text-decoration:none;white-space:nowrap}
@@ -527,17 +527,20 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
   function fit(){ frames.forEach(f => { const w = f.parentElement.clientWidth; f.style.setProperty("--k", (w / 375).toFixed(4)); }); }
   fit(); addEventListener("resize", fit, {passive:true});
   let saved = null; try { saved = localStorage.getItem("wn-view"); } catch (e) {}
+  function restore(){ try { if (saved === null) localStorage.removeItem("wn-view"); else localStorage.setItem("wn-view", saved); } catch (e) {} }
+  addEventListener("pagehide", restore);
   function load(f){
     if (f.src) return;
     const vue = f.dataset.vue;
     f.addEventListener("load", () => {
+      try { const st = f.contentDocument.createElement("style"); st.textContent = "html{scrollbar-width:none}::-webkit-scrollbar{display:none}"; f.contentDocument.head.appendChild(st); } catch (e) {}
       /* si le téléphone a encore l'ancienne version de l'app en mémoire, on change d'écran nous-mêmes */
       setTimeout(() => {
         try {
           const w = f.contentWindow, doc = f.contentDocument, v = doc && doc.getElementById("v-" + vue);
           if (v && v.hidden && typeof w.showViewNow === "function") w.showViewNow(vue);
-          if (saved === null) localStorage.removeItem("wn-view"); else localStorage.setItem("wn-view", saved);
         } catch (e) {}
+        restore(); setTimeout(restore, 6000);
       }, 2500);
     });
     f.src = APP_URL + "?vue=" + vue;
