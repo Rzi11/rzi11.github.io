@@ -99,31 +99,22 @@ section{padding:72px 0}
   .hero .wrap{grid-template-columns:1fr;gap:8px}
   .hero .facts{margin-bottom:20px}
   .sun{width:200px;height:200px;left:calc(50% - 190px)}
-  .screen{height:470px}
 }
 
-/* Téléphone (exemple d'écran, comme l'accueil V3) */
-.phone{position:relative;z-index:2;width:290px;max-width:82vw;background:#0B1B33;border-radius:44px 44px 0 0;padding:12px 12px 0;box-shadow:0 30px 60px rgba(4,20,48,.45)}
-.screen{background:var(--chaux);border-radius:34px 34px 0 0;overflow:hidden;padding:16px 12px 18px;color:var(--ink);height:520px}
-.screen .bar{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 12px}
-.screen .bar .logo{font-size:19px}
-.screen .when{white-space:nowrap;background:var(--blue);color:#fff;font:700 12px var(--body);padding:7px 11px;border-radius:999px}
-.mini-hero{background:var(--blue);color:#fff;border-radius:22px;padding:14px}
-.mini-hero small{display:block;font-size:11px;color:#BFD3F2;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-.mini-hero b{display:block;font:800 30px/1 var(--display);margin:4px 0 2px}
-.mini-hero .zone{font-size:13px;color:#D7E3F7}
-.mini-hero .tiles{display:flex;gap:6px;margin-top:10px}
-.mini-hero .t{flex:1;background:var(--blue-deep);border-radius:12px;padding:7px 8px;font-size:11px;color:#BFD3F2}
-.mini-hero .t strong{display:block;color:#fff;font-size:13px}
-.mini-hero .go{margin-top:10px;background:var(--turq);color:#06302B;border-radius:999px;text-align:center;font:800 16px/1 var(--display);padding:10px}
-.mini-list{margin-top:10px;display:flex;flex-direction:column;gap:6px}
-.mini-row{display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:8px 10px;font-size:13px}
-.mini-row .n{font:800 15px var(--display);color:var(--muted);width:14px}
-.mini-row .nm{flex:1;font-weight:700}
-.mini-row .nm span{display:block;font-weight:400;color:var(--muted);font-size:11px}
+/* Téléphone : la vraie app, en direct (iframe 375×812 réduite) */
+.phone{--w:290px;position:relative;z-index:2;width:var(--w);max-width:82vw;background:#0B1B33;border-radius:44px 44px 0 0;padding:11px 11px 0;box-shadow:0 30px 60px rgba(4,20,48,.45)}
+.phone.full{border-radius:44px;padding:11px}
+.screen{position:relative;width:100%;aspect-ratio:375/700;border-radius:34px 34px 0 0;overflow:hidden;background:var(--chaux)}
+.phone.full .screen{aspect-ratio:375/760;border-radius:34px;background:var(--blue)}
+.screen iframe{position:absolute;top:0;left:0;width:375px;height:812px;border:0;transform-origin:0 0;transform:scale(var(--k,.75))}
+.phone.full .screen iframe{height:760px}
+.screen .tap{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;justify-content:center;padding-bottom:22px;text-decoration:none;background:transparent;border:0;cursor:pointer;width:100%}
+.screen .tap span{background:rgba(15,36,64,.88);color:#fff;font:700 14px var(--body);padding:8px 14px;border-radius:999px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.live{position:absolute;top:110px;right:-10px;z-index:4;display:flex;align-items:center;gap:6px;background:var(--harissa);color:#fff;font:700 12px var(--body);padding:5px 11px;border-radius:999px;transform:rotate(4deg)}
+.live i{width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.25}}
 .wv{width:38px;height:28px;border-radius:9px;display:grid;place-items:center}
 .wv svg{width:30px;height:22px}
-.screen-note{position:absolute;top:120px;right:-6px;z-index:3;background:var(--harissa);color:#fff;font:700 12px var(--body);padding:5px 10px;border-radius:999px;transform:rotate(4deg)}
 
 /* ——— Comment ça marche ——— */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;counter-reset:s}
@@ -157,29 +148,23 @@ section{padding:72px 0}
 @media (max-width:860px){ .install .grid{grid-template-columns:1fr} .qr-card{display:none} .qr-card.show{display:block} }
 
 /* ——— Les plages ——— */
-.beaches .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;margin-top:32px}
-.map{background:var(--blue);border-radius:30px;padding:10px;position:relative}
-.map svg{display:block;width:100%;height:auto}
-.map .isl{fill:var(--sand);stroke:var(--sand-deep);stroke-width:1.5}
-.map .lbl{font:800 13px var(--display);fill:#fff}
-.map .dot circle{fill:#fff;stroke:var(--blue);stroke-width:1.8;transition:r .2s}
-.map .dot text{font:800 8px var(--body);fill:var(--blue);text-anchor:middle;dominant-baseline:central;pointer-events:none}
-.map .dot{cursor:pointer}
-.map .dot.on circle{fill:var(--turq);stroke:#fff}
-.map .dot.on text{fill:#06302B}
-.map .town{font:700 11px var(--body);fill:#8A6F45}
-.map .compass{position:absolute;top:18px;right:20px;color:#BFD3F2;font:800 14px var(--display)}
-.coasts{display:flex;flex-direction:column;gap:8px}
-.coast{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 16px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%;transition:border-color .15s, transform .15s}
-.coast:hover{border-color:var(--turq)}
-.coast.on{border-color:var(--turq);box-shadow:0 0 0 2px var(--turq) inset}
-.coast b{font:800 19px var(--display);color:var(--blue)}
-.coast small{color:var(--muted);margin-left:6px}
-.coast .spots{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.beaches .grid{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;margin-top:32px}
+.beaches .phone{--w:330px}
+.mapwrap{position:relative;display:flex;justify-content:center}
+.mapwrap .live{top:40px;right:-14px}
+.coasts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.coast{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 16px}
+.coast b{font:800 19px var(--display);color:var(--blue);display:block}
+.coast small{color:var(--muted);font-size:14px}
+.coast .spots{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .coast .spots span{background:var(--chaux);border-radius:999px;padding:2px 10px;font-size:14px;font-weight:700}
+.coast.wide{grid-column:1/-1}
+.maphint{margin-top:18px;color:var(--muted)}
+.maphint b{color:var(--ink)}
 .soon{margin-top:16px;display:flex;gap:12px;align-items:center;background:var(--sand);border-radius:18px;padding:14px 16px;font-weight:700}
 .soon .tn{font-size:26px}
-@media (max-width:860px){ .beaches .grid{grid-template-columns:1fr} }
+@media (max-width:900px){ .beaches .grid{grid-template-columns:1fr;gap:28px} .beaches .phone{--w:300px} }
+@media (max-width:520px){ .coasts{grid-template-columns:1fr} }
 
 /* ——— Aider ——— */
 .help{background:var(--turq);color:#06302B}
@@ -262,30 +247,15 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
         <li>Gratuit</li><li>Sans compte</li><li>Sans pub</li><li>Mis à jour toutes les heures</li>
       </ul>
     </div>
-    <div class="hero-art" aria-hidden="true">
+    <div class="hero-art">
       <div class="sun"></div>
       <div class="phone">
         <div class="screen">
-          <div class="bar"><span class="logo">Win N<span class="three">3</span>oum <span class="q">?</span></span><span class="when">Aujourd'hui 14 h ▾</span></div>
-          <div class="mini-hero">
-            <small>N°1 en ce moment</small>
-            <b>Yati 1</b>
-            <span class="zone">Ras Taguermess</span>
-            <div class="tiles">
-              <div class="t">La mer<strong>Plate</strong></div>
-              <div class="t">L'eau<strong>Turquoise</strong></div>
-              <div class="t">Algues<strong>Rien</strong></div>
-            </div>
-            <div class="go">Yalla</div>
-          </div>
-          <div class="mini-list">
-            <div class="mini-row"><span class="n">2</span><span class="nm">Lella Hadria<span>Ras Taguermess</span></span><span class="wv" style="background:var(--good-bg)" data-wave="good"></span></div>
-            <div class="mini-row"><span class="n">3</span><span class="nm">Vincci<span>Sidi Mahrez</span></span><span class="wv" style="background:var(--warn-bg)" data-wave="warn"></span></div>
-            <div class="mini-row"><span class="n">4</span><span class="nm">Sidi Jmour<span>Sidi Jmour</span></span><span class="wv" style="background:var(--bad-bg)" data-wave="bad"></span></div>
-          </div>
+          <iframe class="app-frame" data-vue="lyoum" title="L'app Win N3oum en direct" tabindex="-1" aria-hidden="true"></iframe>
+          <a class="tap js-app" href="https://rzi11.github.io/WinN3oum/" tabindex="-1"><span>Touche pour ouvrir l'app</span></a>
         </div>
       </div>
-      <span class="screen-note">Exemple d'écran</span>
+      <span class="live"><i></i>En direct</span>
     </div>
   </div>
   <svg class="hero-sea" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
@@ -388,14 +358,20 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
   <div class="wrap">
     <span class="kicker">Djerba d'abord</span>
     <h2 id="t-plages"><span id="nb-plages">13</span> plages, <span id="nb-cotes">7</span> côtes</h2>
-    <p class="lead">Chaque côte a ses coins, avec les noms que tout le monde utilise sur l'île. Touche une côte pour la voir sur la carte.</p>
+    <p class="lead">Voici la carte de l'app, en direct : la couleur de l'eau devant chaque plage dit comment est la mer en ce moment.</p>
     <div class="grid">
-      <div class="map" aria-hidden="true">
-        <span class="compass">N ↑</span>
-        <svg id="map" viewBox="0 0 400 336"></svg>
+      <div class="mapwrap">
+        <div class="phone full">
+          <div class="screen">
+            <iframe class="app-frame" data-vue="carte" data-lazy title="La carte de l'app Win N3oum, en direct" loading="lazy"></iframe>
+            <button class="tap" type="button" id="map-tap"><span>Touche pour jouer avec la carte</span></button>
+          </div>
+        </div>
+        <span class="live"><i></i>En direct</span>
       </div>
       <div>
         <div class="coasts" id="coasts"></div>
+        <p class="maphint">Sur la carte, choisis <b>La mer</b>, <b>Belle eau</b> ou <b>Algues</b> dans le menu en haut, puis glisse les fiches en bas : <b>Yalla</b> t'emmène à la plage.</p>
         <p class="soon"><span class="tn">🇹🇳</span>Et bientôt toute la Tunisie : Hammamet, Mahdia, Kerkennah, Tabarka…</p>
       </div>
     </div>
@@ -407,7 +383,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
   <div class="wrap">
     <span class="kicker" style="background:rgba(255,255,255,.7)">3awenna</span>
     <h2 id="t-aider">Tu es sur place ? Dis-nous comment c'est</h2>
-    <p class="lead">Arrivé à la plage, touche <b>Wselt !</b> et réponds en quelques secondes. Ton retour aide tous ceux qui hésitent, et rend l'app plus juste chaque jour.</p>
+    <p class="lead">Arrivé à la plage, touche <b>Wselt !</b> (ou l'onglet <b>Mon retour</b>) et réponds en quelques secondes. Ton retour aide tous ceux qui hésitent, et rend l'app plus juste chaque jour.</p>
     <div class="grid">
       <div class="card rise"><span class="em" aria-hidden="true">🌊</span><b>La mer</b><p>Plate, ça bouge, ou trop de vagues ?</p></div>
       <div class="card rise"><span class="em" aria-hidden="true">💎</span><b>L'eau</b><p>Claire et turquoise, ou trouble ?</p></div>
@@ -524,76 +500,57 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
   show(isIOS ? "tab-ios" : isAndroid ? "tab-and" : "tab-pc");
   if (inApp) document.getElementById("inapp").hidden = false;
 
-  /* La carte de Djerba : sable = terre, bleu Sidi Bou = mer */
+  /* Les côtes et leurs coins (repris de plages.json) */
   const COTES = [
-    {id:"ras-rmel", name:"Ras R'mel", desc:"Presqu'île nord, face à Houmt Souk"},
-    {id:"sidi-mahrez", name:"Sidi Mahrez", desc:"Zone touristique, nord-est"},
-    {id:"ras-taguermess", name:"Ras Taguermess", desc:"Cap nord-est, autour du phare"},
-    {id:"la-seguia", name:"El Seguia", desc:"Côte est"},
-    {id:"aghir", name:"Aghir", desc:"Côte sud-est"},
-    {id:"cote-ouest", name:"Cheikh Yahya", desc:"Entre Ajim et Sidi Jmour"},
-    {id:"sidi-jmour", name:"Sidi Jmour", desc:"Nord-ouest, couchers de soleil"}
+    ["Ras R'mel","Presqu'île nord, face à Houmt Souk",["Ras R'mel"]],
+    ["Sidi Mahrez","Zone touristique, nord-est",["El Hachen","El Jazira","Sunset","Vincci","Bowling"]],
+    ["Ras Taguermess","Cap nord-est, autour du phare",["Yati 1","Yati 2","Lella Hadria"]],
+    ["El Seguia","Côte est",["El Seguia"]],
+    ["Aghir","Côte sud-est",["Aghir"]],
+    ["Cheikh Yahya","Entre Ajim et Sidi Jmour",["Cheikh Yahya"]],
+    ["Sidi Jmour","Nord-ouest, couchers de soleil",["Sidi Jmour"]]
   ];
-  const PLAGES = [
-    ["ras-rmel","Ras R'mel",33.91099,10.90351],
-    ["sidi-mahrez","El Hachen",33.87518,10.95606],["sidi-mahrez","El Jazira",33.86772,10.96714],
-    ["sidi-mahrez","Sunset",33.8638,10.97523],["sidi-mahrez","Vincci",33.84558,10.99663],["sidi-mahrez","Bowling",33.830158,11.025309],
-    ["ras-taguermess","Yati 1",33.82651,11.05299],["ras-taguermess","Yati 2",33.81446,11.05474],["ras-taguermess","Lella Hadria",33.79728,11.05839],
-    ["la-seguia","El Seguia",33.78754,11.0582],["aghir","Aghir",33.76479,11.02568],
-    ["cote-ouest","Cheikh Yahya",33.78435,10.74144],["sidi-jmour","Sidi Jmour",33.83349,10.74849]
-  ];
-  document.getElementById("nb-plages").textContent = PLAGES.length;
+  document.getElementById("nb-plages").textContent = COTES.reduce((n, c) => n + c[2].length, 0);
   document.getElementById("nb-cotes").textContent = COTES.length;
-
-  const K = 1200, LON0 = 10.70, LAT0 = 33.94, COS = Math.cos(33.8 * Math.PI / 180);
-  const P = (lat, lon) => [((lon - LON0) * COS * K).toFixed(1), ((LAT0 - lat) * K).toFixed(1)];
-  /* Contour simplifié de l'île (lat, lon) */
-  const OUTLINE = [[33.845,10.738],[33.862,10.775],[33.874,10.815],[33.882,10.850],[33.886,10.872],[33.898,10.884],[33.912,10.896],[33.918,10.906],
-    [33.912,10.912],[33.898,10.920],[33.884,10.935],[33.874,10.955],[33.863,10.976],[33.845,10.999],[33.832,11.024],[33.826,11.046],
-    [33.818,11.060],[33.800,11.063],[33.786,11.062],[33.772,11.045],[33.762,11.030],[33.745,11.018],[33.722,11.006],[33.700,10.996],
-    [33.684,10.982],[33.688,10.950],[33.698,10.910],[33.708,10.870],[33.712,10.830],[33.704,10.792],[33.712,10.760],[33.728,10.738],
-    [33.752,10.730],[33.778,10.734],[33.806,10.738],[33.828,10.736]];
-  const svg = document.getElementById("map"), NS = "http://www.w3.org/2000/svg";
-  const mk = (tag, attrs, parent = svg) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
-  /* petites vagues dans la mer */
-  for (let i = 0; i < 9; i++) {
-    const x = 20 + (i * 97) % 360, y = 30 + (i * 61) % 290;
-    mk("path", {d:`M${x} ${y} q6 -5 12 0 t12 0`, fill:"none", stroke:"#4B7EC6", "stroke-width":2, "stroke-linecap":"round", opacity:.6});
-  }
-  mk("path", {class:"isl", d:"M" + OUTLINE.map(p => P(...p).join(" ")).join(" L") + "Z", "stroke-linejoin":"round"});
-  /* la chaussée romaine vers El Kantara */
-  const k1 = P(33.690,10.990), k2 = P(33.660,11.010);
-  mk("path", {d:`M${k1[0]} ${k1[1]} L${k2[0]} ${k2[1]}`, stroke:"#D9BF8F", "stroke-width":4, "stroke-linecap":"round"});
-  [["Houmt Souk",33.873,10.858],["Midoun",33.808,10.992],["Ajim",33.725,10.752],["Guellala",33.735,10.860]].forEach(([n, la, lo]) => {
-    const [x, y] = P(la, lo); mk("circle", {cx:x, cy:y, r:2.5, fill:"#8A6F45"}); const t = mk("text", {class:"town", x:+x + 5, y:+y + 4}); t.textContent = n;
-  });
-  const dots = PLAGES.map((p, i) => {
-    const [x, y] = P(p[2], p[3]);
-    const g = mk("g", {class:"dot", "data-cote":p[0], tabindex:-1});
-    mk("circle", {cx:x, cy:y, r:6.5}, g);
-    const t = mk("text", {x, y}, g); t.textContent = i + 1;
-    const ti = mk("title", {}, g); ti.textContent = p[1];
-    g.addEventListener("click", () => pick(p[0]));
-    return g;
-  });
-
   const list = document.getElementById("coasts");
-  const btns = COTES.map(c => {
-    const b = document.createElement("button");
-    b.className = "coast"; b.type = "button"; b.dataset.cote = c.id;
-    const spots = PLAGES.map((p, i) => [p, i]).filter(([p]) => p[0] === c.id);
-    b.innerHTML = `<b>${c.name}</b><small>${c.desc}</small>` +
-      (spots.length > 1 || spots[0][0][1] !== c.name ? `<span class="spots">${spots.map(([p, i]) => `<span>${i + 1} · ${p[1]}</span>`).join("")}</span>` : "");
-    b.setAttribute("aria-pressed", "false");
-    b.addEventListener("click", () => pick(c.id));
-    list.appendChild(b);
-    return b;
+  COTES.forEach(([name, desc, spots]) => {
+    const d = document.createElement("div");
+    d.className = "coast" + (spots.length > 2 ? " wide" : "");
+    const multi = spots.length > 1 || spots[0] !== name;
+    d.innerHTML = `<b>${name}</b><small>${desc}</small>` + (multi ? `<span class="spots">${spots.map(x => `<span>${x}</span>`).join("")}</span>` : "");
+    list.appendChild(d);
   });
-  function pick(id){
-    btns.forEach(b => { const on = b.dataset.cote === id; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
-    dots.forEach(d => { const on = d.dataset.cote === id; d.classList.toggle("on", on); d.querySelector("circle").setAttribute("r", on ? 8 : 6.5); });
+
+  /* La vraie app, en direct, dans les téléphones.
+     ?vue=… ouvre directement le bon écran sans toucher aux réglages de celui qui a l'app installée. */
+  const frames = [...document.querySelectorAll(".app-frame")];
+  function fit(){ frames.forEach(f => { const w = f.parentElement.clientWidth; f.style.setProperty("--k", (w / 375).toFixed(4)); }); }
+  fit(); addEventListener("resize", fit, {passive:true});
+  let saved = null; try { saved = localStorage.getItem("wn-view"); } catch (e) {}
+  function load(f){
+    if (f.src) return;
+    const vue = f.dataset.vue;
+    f.addEventListener("load", () => {
+      /* si le téléphone a encore l'ancienne version de l'app en mémoire, on change d'écran nous-mêmes */
+      setTimeout(() => {
+        try {
+          const w = f.contentWindow, doc = f.contentDocument, v = doc && doc.getElementById("v-" + vue);
+          if (v && v.hidden && typeof w.showViewNow === "function") w.showViewNow(vue);
+          if (saved === null) localStorage.removeItem("wn-view"); else localStorage.setItem("wn-view", saved);
+        } catch (e) {}
+      }, 2500);
+    });
+    f.src = APP_URL + "?vue=" + vue;
   }
-  pick("ras-taguermess");
+  const lazy = frames.filter(f => f.hasAttribute("data-lazy"));
+  frames.filter(f => !f.hasAttribute("data-lazy")).forEach(load);
+  if ("IntersectionObserver" in window) {
+    const fo = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { load(e.target); fo.unobserve(e.target); } }), {rootMargin:"400px"});
+    lazy.forEach(f => fo.observe(f));
+  } else lazy.forEach(load);
+  /* la carte : on la débloque d'une touche, pour ne pas gêner le défilement de la page */
+  const tap = document.getElementById("map-tap");
+  tap.addEventListener("click", () => { tap.remove(); const f = document.querySelector('.app-frame[data-vue="carte"]'); f.focus(); });
 
   /* Apparition douce au défilement */
   if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
