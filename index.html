@@ -123,9 +123,14 @@ section{padding:72px 0;scroll-margin-top:64px}
 .step h3{color:var(--ink)}
 .step h3::before{counter-increment:s;content:counter(s) ". ";color:var(--turq)}
 .step p{color:var(--muted);margin-top:8px}
-.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-.legend span{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700}
-.legend .wv{width:34px;height:26px}
+.reads{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.read{display:grid;grid-template-columns:62px 1fr;gap:8px;align-items:center}
+.read b{font:800 17px/1 var(--display);color:var(--blue)}
+.read b small{display:block;font:400 12px/1.2 var(--body);color:var(--muted);margin-top:2px}
+.read .ics{display:flex;gap:6px}
+.ico{width:30px;height:30px;flex:none;display:block}
+.ico svg{width:100%;height:100%;display:block}
+.sw{width:30px;height:22px;border-radius:7px;align-self:center}
 @media (max-width:860px){ .steps{grid-template-columns:1fr} }
 
 /* ——— Installer ——— */
@@ -170,13 +175,22 @@ section{padding:72px 0;scroll-margin-top:64px}
 .help{background:var(--turq);color:#06302B}
 .help h2{color:#06302B}
 .help .lead{color:#0B4A43}
-.help .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
-.help .card{background:rgba(255,255,255,.88);border-radius:22px;padding:18px}
-.help .card .em{font-size:30px;line-height:1}
-.help .card b{display:block;font:800 19px var(--display);margin-top:8px}
-.help .card p{font-size:15px;color:#2D4A47;margin-top:4px}
-.wselt{display:inline-block;margin-top:28px;background:var(--blue);color:#fff;font:800 20px var(--display);padding:12px 22px;border-radius:999px}
-@media (max-width:860px){ .help .grid{grid-template-columns:1fr 1fr} }
+.help .grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;margin-top:32px}
+.help .phone{--w:300px}
+.help .phonewrap{position:relative;display:flex;justify-content:center}
+.help .live{top:40px;right:-14px}
+.qs{display:flex;flex-direction:column;gap:10px}
+.q{background:rgba(255,255,255,.9);border-radius:20px;padding:14px 16px;display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center}
+.q b{font:800 20px/1 var(--display)}
+.q b small{display:block;font:400 13px/1.2 var(--body);color:#2D4A47;margin-top:3px}
+.q .ans{display:flex;flex-wrap:wrap;gap:6px 12px}
+.q .ans span{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:700}
+.q .ans .ico{width:28px;height:28px}
+.q .ans .sw{width:26px;height:18px}
+.wselt-line{margin-top:18px;font-size:17px;color:#0B4A43}
+.wselt{display:inline-block;background:var(--blue);color:#fff;font:800 17px var(--display);padding:4px 14px;border-radius:999px;margin:0 2px}
+@media (max-width:900px){ .help .grid{grid-template-columns:1fr;gap:28px} .help .phonewrap{order:-1} }
+@media (max-width:480px){ .q{grid-template-columns:1fr} }
 
 /* ——— Sources ——— */
 .sources .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
@@ -273,13 +287,13 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
     <p class="lead">Pas besoin de savoir lire une carte météo. L'app fait le travail et te répond simplement.</p>
     <div class="steps">
       <article class="step rise">
-        <div class="ic" style="background:var(--good-bg)" data-wave="good" data-big></div>
+        <div class="ic" style="background:var(--good-bg)"><span class="ico" style="width:46px;height:46px" data-mer="good"></span></div>
         <h3>On lit la mer</h3>
-        <p>Le vent, les vagues, le courant et la couleur de l'eau, heure par heure, pour chaque plage. Une plage abritée du vent du jour reste calme : l'app le sait.</p>
-        <div class="legend">
-          <span><i class="wv" style="background:var(--good-bg)" data-wave="good"></i>Mer plate</span>
-          <span><i class="wv" style="background:var(--warn-bg)" data-wave="warn"></i>Ça bouge</span>
-          <span><i class="wv" style="background:var(--bad-bg)" data-wave="bad"></i>Trop de vagues</span>
+        <p>Heure par heure et plage par plage, l'app regarde trois choses :</p>
+        <div class="reads">
+          <div class="read"><b>Mouj<small>les vagues</small></b><span class="ics"><i class="ico" data-mer="good" title="Plate"></i><i class="ico" data-mer="warn" title="Ça bouge"></i><i class="ico" data-mer="bad" title="Vagues"></i></span></div>
+          <div class="read"><b>Zarga<small>la couleur de l'eau</small></b><span class="ics"><i class="sw" style="background:#14B8A6" title="Turquoise"></i><i class="sw" style="background:#7FE3D6" title="Moyenne"></i><i class="sw" style="background:#D6CBB5" title="Trouble"></i></span></div>
+          <div class="read"><b>Algues<small>sur le sable, dans l'eau</small></b><span class="ics"><i class="ico" data-alg="a" title="Aucune"></i><i class="ico" data-alg="s" title="Sur le sable"></i><i class="ico" data-alg="e" title="Dans l'eau"></i></span></div>
         </div>
       </article>
       <article class="step rise">
@@ -287,14 +301,14 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
           <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><rect x="5" y="22" width="8" height="13" rx="3" fill="#7FA6DB"/><rect x="16" y="8" width="8" height="27" rx="3" fill="#1450A3"/><rect x="27" y="16" width="8" height="19" rx="3" fill="#4B7EC6"/></svg>
         </div>
         <h3>On classe les plages</h3>
-        <p>La meilleure arrive en grand, en premier. Les autres suivent dessous, avec leur état de la mer d'un coup d'œil.</p>
+        <p>La meilleure arrive en grand, en premier, avec ses pastilles Mouj, Zarga et Algues. Tu peux aussi filtrer : « Sans algues », « Mer plate », « Zarga ».</p>
       </article>
       <article class="step rise">
         <div class="ic" style="background:var(--sand)">
           <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><circle cx="20" cy="20" r="14" fill="none" stroke="#14B8A6" stroke-width="5" stroke-dasharray="8 3"/><circle cx="20" cy="6" r="5" fill="#E4473C"/></svg>
         </div>
         <h3>Tu choisis ton moment</h3>
-        <p>Tourne le soleil sur le cadran : ce soir, demain matin, samedi. Tu vois tout de suite quand la mer sera belle. Ensuite : <b>Yalla</b>, et l'itinéraire s'ouvre.</p>
+        <p>Touche une heure, ou tourne le soleil sur le cadran pour voir ce soir, demain ou samedi. Tu vois tout de suite quand la mer sera belle. Ensuite : <b>Yalla</b>, et l'itinéraire s'ouvre.</p>
       </article>
     </div>
   </div>
@@ -371,7 +385,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
       </div>
       <div>
         <div class="coasts" id="coasts"></div>
-        <p class="maphint">Sur la carte, choisis <b>La mer</b>, <b>Belle eau</b> ou <b>Algues</b> dans le menu en haut, puis glisse les fiches en bas : <b>Yalla</b> t'emmène à la plage.</p>
+        <p class="maphint">En haut de la carte, choisis <b>Tout</b>, <b>Mouj</b>, <b>Zarga</b> ou <b>Algues</b>, puis glisse les fiches en bas : <b>Yalla</b> t'emmène à la plage.</p>
         <p class="soon"><span class="tn">🇹🇳</span>Et bientôt toute la Tunisie : Hammamet, Mahdia, Kerkennah, Tabarka…</p>
       </div>
     </div>
@@ -383,14 +397,27 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
   <div class="wrap">
     <span class="kicker" style="background:rgba(255,255,255,.7)">3awenna</span>
     <h2 id="t-aider">Tu es sur place ? Dis-nous comment c'est</h2>
-    <p class="lead">Arrivé à la plage, touche <b>Wselt !</b> (ou l'onglet <b>Mon retour</b>) et réponds en quelques secondes. Ton retour aide tous ceux qui hésitent, et rend l'app plus juste chaque jour.</p>
+    <p class="lead">Une ligne, une touche par réponse : 10 secondes. Ton retour aide tous ceux qui hésitent, et rend l'app plus juste chaque jour.</p>
     <div class="grid">
-      <div class="card rise"><span class="em" aria-hidden="true">🌊</span><b>La mer</b><p>Plate, ça bouge, ou trop de vagues ?</p></div>
-      <div class="card rise"><span class="em" aria-hidden="true">💎</span><b>L'eau</b><p>Claire et turquoise, ou trouble ?</p></div>
-      <div class="card rise"><span class="em" aria-hidden="true">🌿</span><b>Les algues</b><p>Sur le sable, à l'entrée de l'eau, ou rien ?</p></div>
-      <div class="card rise"><span class="em" aria-hidden="true">👀</span><b>Ce que tu as vu</b><p>Une méduse ? Tu le dis, et l'info s'affiche pour la plage.</p></div>
+      <div>
+        <div class="qs">
+          <div class="q rise"><b>Mouj<small>les vagues</small></b><span class="ans"><span><i class="ico" data-mer="good"></i>Plate</span><span><i class="ico" data-mer="warn"></i>Ça bouge</span><span><i class="ico" data-mer="bad"></i>Vagues</span></span></div>
+          <div class="q rise"><b>Zarga<small>la couleur de l'eau</small></b><span class="ans"><span><i class="sw" style="background:#14B8A6"></i>Turquoise</span><span><i class="sw" style="background:#7FE3D6"></i>Moyenne</span><span><i class="sw" style="background:#D6CBB5"></i>Trouble</span></span></div>
+          <div class="q rise"><b>Algues</b><span class="ans"><span><i class="ico" data-alg="a"></i>Aucune</span><span><i class="ico" data-alg="s"></i>Sur le sable</span><span><i class="ico" data-alg="e"></i>Dans l'eau</span></span></div>
+          <div class="q rise"><b>Méduses</b><span class="ans"><span>Rien vu</span><span>J'en ai vu</span><span>Pas regardé</span></span></div>
+        </div>
+        <p class="wselt-line">Dans l'app : le bouton <span class="wselt">Wselt !</span> sur la page de ta plage, ou l'onglet <b>Mon retour</b>.</p>
+      </div>
+      <div class="phonewrap">
+        <div class="phone full">
+          <div class="screen">
+            <iframe class="app-frame" data-vue="retour" data-lazy title="Le formulaire Mon retour, en direct" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+            <a class="tap" href="https://rzi11.github.io/WinN3oum/?vue=retour" tabindex="-1"><span>Ouvrir l'app pour répondre</span></a>
+          </div>
+        </div>
+        <span class="live"><i></i>En direct</span>
+      </div>
     </div>
-    <span class="wselt" aria-hidden="true">Wselt !</span>
   </div>
 </section>
 
@@ -456,19 +483,27 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
 (() => {
   const APP_URL = "https://rzi11.github.io/WinN3oum/";
 
-  /* Les petits dessins de la mer (les mêmes que dans l'app : A3, double trait) */
-  const C = {good:"#1E8A5A", warn:"#B86A0A", bad:"#C9362C"}, L = {good:"#9FD6B8", warn:"#E9C38D", bad:"#EFA49D"};
-  function waveSVG(k){
-    const c = C[k], l = L[k];
+  /* Les pastilles de l'app (copiées de l'app : waveSVG, merSVG, algSVG) — à garder identiques */
+  const STATE_C = {good:"#1E8A5A", warn:"#B86A0A", bad:"#C9362C"};
+  const WAVE_LIGHT = {good:"#9FD6B8", warn:"#E9C38D", bad:"#EFA49D"}, WAVE_BG = {good:"#DDF2E7", warn:"#FBEBD3", bad:"#FBDEDB"};
+  function waveSVG(k){ const c = STATE_C[k], l = WAVE_LIGHT[k];
     const body = k==="good" ? `<path d="M5 25 Q17 21 29 25 T53 25 T60 24" stroke="${c}"/><path d="M5 33 Q17 29 29 33 T53 33 T60 32" stroke="${l}"/>`
       : k==="warn" ? `<path d="M4 35 C14 35 18 18 31 17 C40 16.5 45 22.5 42 27.5 C40 30.5 35 29.5 35 25.5" stroke="${c}"/><path d="M4 42 C16 42 22 31 34 31 C44 31 50 40 60 38" stroke="${l}"/>`
       : `<path d="M4 38 C10 38 14 27 18 20 C24 8 40 4 50 10 C58 15 57 26 49 28 C43 29.5 40 24 45 20" stroke="${c}" stroke-width="4.8"/><path d="M4 45 C14 45 20 36 30 35 C40 34 46 42 60 42" stroke="${l}"/><circle cx="57" cy="6" r="2.4" fill="${c}" stroke="none"/><circle cx="60" cy="13" r="1.8" fill="${c}" stroke="none"/>`;
-    return `<svg viewBox="0 0 64 48" aria-hidden="true" fill="none" stroke-width="4.5" stroke-linecap="round">${body}</svg>`;
-  }
-  document.querySelectorAll("[data-wave]").forEach(e => {
-    e.innerHTML = waveSVG(e.dataset.wave);
-    if (e.hasAttribute("data-big")) { const s = e.firstChild; s.setAttribute("width","46"); s.setAttribute("height","34"); }
-  });
+    return `<svg viewBox="0 0 64 48" aria-hidden="true" fill="none" stroke-width="4.5" stroke-linecap="round">${body}</svg>`; }
+  function merSVG(k){ return `<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="${WAVE_BG[k]}"/><g transform="translate(8 9) scale(.75)" fill="none" stroke-width="4.5" stroke-linecap="round">${waveSVG(k).replace(/^<svg[^>]*>|<\/svg>$/g,"")}</g></svg>`; }
+  let ALG_UID = 0;
+  function algStrand(x,b,h,c,w,lean){ return `<path d="M${x} ${b} C${x-3.52} ${b-h*.38} ${x+3.52+lean*.5} ${b-h*.62} ${x+lean} ${b-h}" fill="none" stroke="${c}" stroke-width="${(w*1.15).toFixed(2)}" stroke-linecap="round"/>`; }
+  function algTuft(cx,b,c,s=1,lean=0){ return algStrand(cx-6*s,b,14*s,c,3.4*s,lean-4*s)+algStrand(cx,b,19*s,c,3.8*s,lean)+algStrand(cx+6*s,b,13*s,c,3.4*s,lean+4*s); }
+  function algSVG(k){
+    const W="q8 -6 16 0 t16 0 t16 0 t16 0", WAT="#7FD3C8", SAND="#E3C793"; let inner="";
+    if(k==="e") inner=`<rect y="22" width="64" height="42" fill="${WAT}"/><path d="M0 22 ${W} V30 H0Z" fill="${WAT}"/><path d="M0 22 ${W}" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`+algTuft(32,60,"#3F6E24",1.35)+`<circle cx="46" cy="36" r="2.4" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="50" cy="29" r="1.6" fill="none" stroke="#fff" stroke-width="1.4"/>`;
+    else if(k==="s") inner=`<path d="M0 44 Q32 34 64 44 V64 H0Z" fill="${SAND}"/><path d="M0 44 Q32 34 64 44" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`+algTuft(32,40,"#7E5A26",1.35);
+    else inner=`<path d="M0 30 ${W} V48 H0Z" fill="${WAT}"/><rect y="34" width="64" height="14" fill="${WAT}"/><path d="M0 46 Q32 38 64 46 V64 H0Z" fill="${SAND}"/><path d="M0 30 ${W}" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="15" r="9.5" fill="#1E8A5A"/><path d="M27.2 15.2 l3.4 3.4 l6.6 -7" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>`;
+    const id = "ac" + (++ALG_UID);
+    return `<svg viewBox="0 0 64 64" aria-hidden="true"><defs><clipPath id="${id}"><circle cx="32" cy="32" r="32"/></clipPath></defs><g clip-path="url(#${id})"><rect width="64" height="64" fill="#D6EFEB"/>${inner}</g></svg>`; }
+  document.querySelectorAll("[data-mer]").forEach(e => e.innerHTML = merSVG(e.dataset.mer));
+  document.querySelectorAll("[data-alg]").forEach(e => e.innerHTML = algSVG(e.dataset.alg));
 
   /* En-tête : un trait quand on défile */
   const top = document.getElementById("top");
