@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Confidentialité — Win N3oum ?</title>
+<meta name="description" content="Ce que l'app Win N3oum garde, ce qu'elle envoie, et ce qu'elle ne fait jamais.">
+<link rel="canonical" href="https://rzi11.github.io/confidentialite.html">
+<meta name="theme-color" content="#1450A3">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+@font-face{font-family:"Baloo 2";font-weight:800;font-display:swap;src:url(fonts/baloo-2-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-700-normal.woff2) format("woff2")}
+:root{color-scheme:light;--blue:#1450A3;--blue-deep:#0E3C7D;--turq:#14B8A6;--chaux:#F7F5F0;--sand:#E8D5B0;--harissa:#E4473C;--ink:#0F2440;--muted:#5A6A80;--line:#E6E0D2;
+  --display:"Baloo 2","Arial Rounded MT Bold",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--chaux);color:var(--ink);font:17px/1.6 var(--body)}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--turq);outline-offset:3px;border-radius:6px}
+header{background:var(--blue)}
+header .w{display:flex;align-items:center;gap:10px;height:64px}
+header a{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 22px/1 var(--display);color:#fff}
+header img{width:34px;height:34px;border-radius:10px}
+header .three{color:#7FE3D6} header .q{color:var(--sand)}
+.w{max-width:760px;margin:0 auto;padding:0 16px}
+main{padding:44px 0 64px}
+h1{font:800 clamp(34px,6vw,48px)/1.1 var(--display);color:var(--blue);margin:0}
+h2{font:800 24px/1.2 var(--display);margin:36px 0 8px}
+.lead{font-size:19px;color:var(--muted);margin:12px 0 0}
+.box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 20px;margin-top:12px}
+.box dl{margin:0}
+.box div{padding:12px 0;border-bottom:1px solid var(--line)}
+.box div:last-child{border-bottom:0}
+dt{font-weight:700}
+dd{margin:2px 0 0;color:var(--muted)}
+.never{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:8px}
+.never li{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px}
+.never li::before{content:"✕ ";color:var(--harissa);font-weight:700}
+.date{color:var(--muted);font-size:15px;margin-top:40px}
+footer{background:var(--blue-deep);color:#BFD3F2;font-size:15px;padding:20px 0}
+footer a{color:#fff}
+</style>
+</head>
+<body>
+<header><div class="w"><a href="./"><img src="icons/icon-192.png" alt="" width="34" height="34">Win N<span class="three">3</span>oum <span class="q">?</span></a></div></header>
+<main class="w">
+  <h1>Confidentialité</h1>
+  <p class="lead">En bref : pas de compte, pas de pub, pas de pistage. L'app garde tes réglages sur ton téléphone et n'envoie quelque chose que quand tu donnes ton avis sur une plage.</p>
+
+  <h2>Ce qui reste sur ton téléphone</h2>
+  <div class="box"><dl>
+    <div><dt>Tes plages préférées</dt><dd>Les plages que tu mets en favori.</dd></div>
+    <div><dt>Ton dernier affichage</dt><dd>Pour rouvrir l'app là où tu l'as laissée.</dd></div>
+    <div><dt>Un numéro au hasard</dt><dd>Un identifiant anonyme créé par l'app. Il ne dit rien sur toi : il sert seulement à repérer les envois en double ou abusifs.</dd></div>
+  </dl></div>
+  <p style="margin-top:10px;color:var(--muted)">Tu peux tout effacer en supprimant l'app, ou en vidant les données du site dans les réglages de ton navigateur.</p>
+
+  <h2>Ce qui est envoyé quand tu donnes ton avis (« Wselt ! »)</h2>
+  <div class="box"><dl>
+    <div><dt>Ta réponse</dt><dd>La plage, l'heure, l'état de la mer, la couleur de l'eau, les algues, et ce que tu as vu (par exemple une méduse).</dd></div>
+    <div><dt>Le numéro au hasard</dt><dd>Pour limiter les envois en rafale et donner plus de poids aux personnes fiables.</dd></div>
+    <div><dt>Ta position, seulement si tu l'autorises</dt><dd>Pour vérifier que tu es bien près de la plage. Elle n'est jamais affichée : les autres voient seulement le résumé des avis pour chaque plage.</dd></div>
+  </dl></div>
+  <p style="margin-top:10px;color:var(--muted)">Ces avis sont stockés dans une base de données protégée (Supabase). Seule l'équipe Win N3oum y a accès.</p>
+
+  <h2>Ce qui est demandé à d'autres services</h2>
+  <p>Pour afficher la météo de la mer, ton téléphone demande directement les prévisions à <a href="https://open-meteo.com/">Open-Meteo</a>. Cette demande contient les coordonnées des plages, pas les tiennes.</p>
+
+  <h2>Ce qu'on ne fait jamais</h2>
+  <ul class="never">
+    <li>Te demander ton nom, ton e-mail ou ton numéro.</li>
+    <li>Afficher de la pub ou te suivre d'un site à l'autre.</li>
+    <li>Vendre ou partager tes données.</li>
+    <li>Utiliser ta position en arrière-plan.</li>
+  </ul>
+
+  <h2>Une question ?</h2>
+  <p>Écris-nous sur <a href="https://github.com/Rzi11/WinN3oum/issues">la page du projet</a>. Tu peux aussi nous demander d'effacer tes avis : donne-nous la plage et le jour.</p>
+
+  <p class="date">Mis à jour le 13 octobre 2026.</p>
+</main>
+<footer><div class="w"><a href="./">← Retour au site</a> · <a href="https://rzi11.github.io/WinN3oum/">Ouvrir l'app</a></div></footer>
+</body>
+</html>

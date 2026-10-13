@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Win N3oum ? — La bonne plage, au bon moment, à Djerba</title>
+<meta name="description" content="Vent, vagues, couleur de l'eau, algues : chaque jour, Win N3oum classe les plages de Djerba et te dit où et quand te baigner. Gratuit, sans compte, s'installe en 10 secondes.">
+<link rel="canonical" href="https://rzi11.github.io/">
+<meta name="theme-color" content="#1450A3">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Win N3oum ?">
+<meta property="og:title" content="Win N3oum ? — La bonne plage, au bon moment">
+<meta property="og:description" content="Où se baigner aujourd'hui à Djerba ? L'app gratuite qui lit la mer pour toi.">
+<meta property="og:url" content="https://rzi11.github.io/">
+<meta property="og:image" content="https://rzi11.github.io/img/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Win N3oum ?","url":"https://rzi11.github.io/WinN3oum/","applicationCategory":"TravelApplication","operatingSystem":"iOS, Android, Web","inLanguage":"fr","offers":{"@type":"Offer","price":"0","priceCurrency":"TND"},"description":"Où se baigner aujourd'hui à Djerba : état de la mer, couleur de l'eau et algues, plage par plage."}
+</script>
+
+<link rel="preload" href="fonts/baloo-2-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Baloo 2";font-weight:600;font-display:swap;src:url(fonts/baloo-2-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Baloo 2";font-weight:800;font-display:swap;src:url(fonts/baloo-2-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-700-normal.woff2) format("woff2")}
+
+/* Identité « Pop tunisien » — mêmes valeurs que l'app */
+:root{
+  color-scheme:light;
+  --blue:#1450A3; --blue-deep:#0E3C7D; --turq:#14B8A6; --turq-light:#7FE3D6; --turq-ink:#0B7F74;
+  --chaux:#F7F5F0; --sand:#E8D5B0; --sand-deep:#D9BF8F; --harissa:#E4473C; --card:#FFFFFF;
+  --ink:#0F2440; --muted:#5A6A80; --line:#E6E0D2;
+  --good:#1E8A5A; --good-bg:#DDF2E7; --warn:#B86A0A; --warn-bg:#FBEBD3; --bad:#C9362C; --bad-bg:#FBDEDB;
+  --display:"Baloo 2","Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,sans-serif;
+  --wrap:1080px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--chaux);color:var(--ink);font:17px/1.55 var(--body);overflow-x:hidden}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--turq);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.08;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(30px,5.4vw,46px);color:var(--blue)}
+h3{font-size:22px}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
+section{padding:72px 0}
+.kicker{display:inline-block;font:700 14px var(--body);color:var(--turq-ink);background:#D4F3EE;padding:4px 12px;border-radius:999px;margin-bottom:12px}
+.lead{font-size:19px;color:var(--muted);max-width:40em;margin-top:12px}
+.logo{font:800 24px/1 var(--display);color:var(--blue);text-decoration:none;white-space:nowrap}
+.logo .three{color:var(--turq)} .logo .q{color:var(--harissa)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 24px;border-radius:999px;
+  font:800 18px/1 var(--display);text-decoration:none;border:0;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
+.btn:active{transform:scale(.97)}
+.btn-main{background:var(--turq);color:#06302B;box-shadow:0 6px 0 var(--turq-ink)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--turq-ink)}
+.btn-ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.55)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 2px #fff}
+
+/* ——— En-tête ——— */
+.top{position:sticky;top:0;z-index:20;background:rgba(247,245,240,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.top.scrolled{border-bottom-color:var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px}
+.top .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.top .brand img{width:36px;height:36px;border-radius:10px}
+.top nav{display:flex;align-items:center;gap:22px}
+.top nav a.l{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px}
+.top nav a.l:hover{color:var(--blue)}
+.top .btn{min-height:42px;padding:8px 18px;font-size:16px;box-shadow:0 4px 0 var(--turq-ink)}
+@media (max-width:760px){ .top nav a.l{display:none} }
+
+/* ——— Héros ——— */
+.hero{background:var(--blue);color:#fff;position:relative;overflow:hidden;padding:56px 0 0}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end}
+.hero h1{font-size:clamp(44px,8.4vw,84px);color:#fff}
+.hero h1 .three{color:var(--turq-light)} .hero h1 .q{color:var(--sand)}
+.hero .slogan{font:800 clamp(22px,3.4vw,30px)/1.15 var(--display);color:var(--sand);margin-top:10px}
+.hero .sub{font-size:19px;color:#D7E3F7;margin-top:18px;max-width:30em}
+.hero .sub b{color:#fff}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.hero .facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin:24px 0 130px;color:#BFD3F2;font-size:15px;padding:0;list-style:none}
+.hero .facts li::before{content:"✓ ";color:var(--turq-light);font-weight:700}
+.hero-art{position:relative;align-self:end;display:flex;justify-content:center;padding-top:30px}
+.sun{position:absolute;width:250px;height:250px;border-radius:50%;background:var(--sand);top:0;left:calc(50% - 250px)}
+.hero-sea{position:absolute;left:0;right:0;bottom:0;height:120px;pointer-events:none;z-index:3}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;gap:8px}
+  .hero .facts{margin-bottom:20px}
+  .sun{width:200px;height:200px;left:calc(50% - 190px)}
+  .screen{height:470px}
+}
+
+/* Téléphone (exemple d'écran, comme l'accueil V3) */
+.phone{position:relative;z-index:2;width:290px;max-width:82vw;background:#0B1B33;border-radius:44px 44px 0 0;padding:12px 12px 0;box-shadow:0 30px 60px rgba(4,20,48,.45)}
+.screen{background:var(--chaux);border-radius:34px 34px 0 0;overflow:hidden;padding:16px 12px 18px;color:var(--ink);height:520px}
+.screen .bar{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 12px}
+.screen .bar .logo{font-size:19px}
+.screen .when{white-space:nowrap;background:var(--blue);color:#fff;font:700 12px var(--body);padding:7px 11px;border-radius:999px}
+.mini-hero{background:var(--blue);color:#fff;border-radius:22px;padding:14px}
+.mini-hero small{display:block;font-size:11px;color:#BFD3F2;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.mini-hero b{display:block;font:800 30px/1 var(--display);margin:4px 0 2px}
+.mini-hero .zone{font-size:13px;color:#D7E3F7}
+.mini-hero .tiles{display:flex;gap:6px;margin-top:10px}
+.mini-hero .t{flex:1;background:var(--blue-deep);border-radius:12px;padding:7px 8px;font-size:11px;color:#BFD3F2}
+.mini-hero .t strong{display:block;color:#fff;font-size:13px}
+.mini-hero .go{margin-top:10px;background:var(--turq);color:#06302B;border-radius:999px;text-align:center;font:800 16px/1 var(--display);padding:10px}
+.mini-list{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.mini-row{display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:8px 10px;font-size:13px}
+.mini-row .n{font:800 15px var(--display);color:var(--muted);width:14px}
+.mini-row .nm{flex:1;font-weight:700}
+.mini-row .nm span{display:block;font-weight:400;color:var(--muted);font-size:11px}
+.wv{width:38px;height:28px;border-radius:9px;display:grid;place-items:center}
+.wv svg{width:30px;height:22px}
+.screen-note{position:absolute;top:120px;right:-6px;z-index:3;background:var(--harissa);color:#fff;font:700 12px var(--body);padding:5px 10px;border-radius:999px;transform:rotate(4deg)}
+
+/* ——— Comment ça marche ——— */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;counter-reset:s}
+.step{background:#fff;border-radius:26px;padding:24px;border:1px solid var(--line)}
+.step .ic{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;margin-bottom:16px}
+.step h3{color:var(--ink)}
+.step h3::before{counter-increment:s;content:counter(s) ". ";color:var(--turq)}
+.step p{color:var(--muted);margin-top:8px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.legend span{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700}
+.legend .wv{width:34px;height:26px}
+@media (max-width:860px){ .steps{grid-template-columns:1fr} }
+
+/* ——— Installer ——— */
+.install{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.install .grid{display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:start;margin-top:32px}
+.tabs{display:inline-flex;background:var(--chaux);border-radius:999px;padding:5px;gap:4px;border:1px solid var(--line)}
+.tabs button{border:0;background:transparent;font:700 16px var(--body);color:var(--muted);padding:10px 20px;border-radius:999px;cursor:pointer;min-height:44px}
+.tabs button[aria-selected="true"]{background:var(--blue);color:#fff}
+.howto{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:14px;counter-reset:h}
+.howto li{display:flex;gap:14px;align-items:flex-start;font-size:18px}
+.howto li::before{counter-increment:h;content:counter(h);flex:none;width:36px;height:36px;border-radius:50%;background:var(--sand);color:var(--ink);font:800 19px/36px var(--display);text-align:center}
+.howto .k{display:inline-flex;align-items:center;gap:4px;background:var(--chaux);border:1px solid var(--line);border-radius:8px;padding:0 8px;font-weight:700;white-space:nowrap}
+.howto .k svg{width:16px;height:16px}
+.note{margin-top:22px;background:var(--warn-bg);color:#6B3F04;border-radius:16px;padding:14px 16px;font-size:16px}
+.qr-card{background:var(--chaux);border:1px solid var(--line);border-radius:26px;padding:22px;text-align:center}
+.qr-card img{width:200px;height:200px;background:#fff;border-radius:14px;padding:8px}
+.qr-card p{color:var(--muted);font-size:15px;margin-top:10px}
+.qr-card .url{font-weight:700;color:var(--ink);word-break:break-all;font-size:14px}
+.inapp{margin-top:20px;background:var(--harissa);color:#fff;border-radius:16px;padding:14px 16px;font-weight:700}
+@media (max-width:860px){ .install .grid{grid-template-columns:1fr} .qr-card{display:none} .qr-card.show{display:block} }
+
+/* ——— Les plages ——— */
+.beaches .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;margin-top:32px}
+.map{background:var(--blue);border-radius:30px;padding:10px;position:relative}
+.map svg{display:block;width:100%;height:auto}
+.map .isl{fill:var(--sand);stroke:var(--sand-deep);stroke-width:1.5}
+.map .lbl{font:800 13px var(--display);fill:#fff}
+.map .dot circle{fill:#fff;stroke:var(--blue);stroke-width:1.8;transition:r .2s}
+.map .dot text{font:800 8px var(--body);fill:var(--blue);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.map .dot{cursor:pointer}
+.map .dot.on circle{fill:var(--turq);stroke:#fff}
+.map .dot.on text{fill:#06302B}
+.map .town{font:700 11px var(--body);fill:#8A6F45}
+.map .compass{position:absolute;top:18px;right:20px;color:#BFD3F2;font:800 14px var(--display)}
+.coasts{display:flex;flex-direction:column;gap:8px}
+.coast{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 16px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%;transition:border-color .15s, transform .15s}
+.coast:hover{border-color:var(--turq)}
+.coast.on{border-color:var(--turq);box-shadow:0 0 0 2px var(--turq) inset}
+.coast b{font:800 19px var(--display);color:var(--blue)}
+.coast small{color:var(--muted);margin-left:6px}
+.coast .spots{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.coast .spots span{background:var(--chaux);border-radius:999px;padding:2px 10px;font-size:14px;font-weight:700}
+.soon{margin-top:16px;display:flex;gap:12px;align-items:center;background:var(--sand);border-radius:18px;padding:14px 16px;font-weight:700}
+.soon .tn{font-size:26px}
+@media (max-width:860px){ .beaches .grid{grid-template-columns:1fr} }
+
+/* ——— Aider ——— */
+.help{background:var(--turq);color:#06302B}
+.help h2{color:#06302B}
+.help .lead{color:#0B4A43}
+.help .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.help .card{background:rgba(255,255,255,.88);border-radius:22px;padding:18px}
+.help .card .em{font-size:30px;line-height:1}
+.help .card b{display:block;font:800 19px var(--display);margin-top:8px}
+.help .card p{font-size:15px;color:#2D4A47;margin-top:4px}
+.wselt{display:inline-block;margin-top:28px;background:var(--blue);color:#fff;font:800 20px var(--display);padding:12px 22px;border-radius:999px}
+@media (max-width:860px){ .help .grid{grid-template-columns:1fr 1fr} }
+
+/* ——— Sources ——— */
+.sources .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.src{border-top:4px solid var(--blue);padding-top:16px}
+.src:nth-child(2){border-color:var(--turq)} .src:nth-child(3){border-color:var(--sand-deep)}
+.src p{color:var(--muted);margin-top:6px}
+.safe{margin-top:30px;display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px 18px}
+.safe .flag{flex:none;width:34px;height:34px}
+@media (max-width:860px){ .sources .grid{grid-template-columns:1fr} }
+
+/* ——— Questions ——— */
+.faq{background:#fff;border-top:1px solid var(--line)}
+.faq .list{margin-top:28px;max-width:760px}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;font:800 20px/1.25 var(--display);position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:30px;color:var(--turq);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 18px;color:var(--muted)}
+
+/* ——— Fin ——— */
+.end{background:var(--blue);color:#fff;text-align:center;padding:80px 0 0;position:relative;overflow:hidden}
+.end h2{color:#fff;font-size:clamp(38px,7vw,64px)}
+.end h2 .three{color:var(--turq-light)} .end h2 .q{color:var(--sand)}
+.end p{color:#D7E3F7;margin:12px auto 28px;max-width:30em}
+.end .sea{display:block;width:100%;height:90px;margin-top:60px}
+footer{background:var(--blue-deep);color:#BFD3F2;font-size:15px;padding:24px 0 calc(24px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center}
+footer a{color:#fff}
+footer nav{display:flex;flex-wrap:wrap;gap:18px}
+
+/* Apparition douce */
+.rise{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+.rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .rise{opacity:1;transform:none;transition:none} .btn{transition:none} }
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Win N3oum, accueil">
+      <img src="icons/icon-192.png" alt="" width="36" height="36">
+      <span class="logo">Win N<span class="three">3</span>oum <span class="q">?</span></span>
+    </a>
+    <nav aria-label="Menu">
+      <a class="l" href="#comment">Comment ça marche</a>
+      <a class="l" href="#plages">Les plages</a>
+      <a class="l" href="#questions">Questions</a>
+      <a class="btn btn-main" href="#installer">L'avoir</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ——— Héros ——— -->
+<section class="hero" aria-labelledby="titre">
+  <div class="wrap">
+    <div>
+      <h1 id="titre">Win N<span class="three">3</span>oum <span class="q">?</span></h1>
+      <p class="slogan">La bonne plage, au bon moment.</p>
+      <p class="sub">Ena nqollek win. <b>Vent, vagues, couleur de l'eau, algues</b> : chaque heure, l'app classe les plages de Djerba et te dit où aller te baigner.</p>
+      <div class="ctas">
+        <a class="btn btn-main js-app" href="https://rzi11.github.io/WinN3oum/">Yalla, ouvrir l'app</a>
+        <a class="btn btn-ghost" href="#installer">L'installer sur mon téléphone</a>
+      </div>
+      <ul class="facts">
+        <li>Gratuit</li><li>Sans compte</li><li>Sans pub</li><li>Mis à jour toutes les heures</li>
+      </ul>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="phone">
+        <div class="screen">
+          <div class="bar"><span class="logo">Win N<span class="three">3</span>oum <span class="q">?</span></span><span class="when">Aujourd'hui 14 h ▾</span></div>
+          <div class="mini-hero">
+            <small>N°1 en ce moment</small>
+            <b>Yati 1</b>
+            <span class="zone">Ras Taguermess</span>
+            <div class="tiles">
+              <div class="t">La mer<strong>Plate</strong></div>
+              <div class="t">L'eau<strong>Turquoise</strong></div>
+              <div class="t">Algues<strong>Rien</strong></div>
+            </div>
+            <div class="go">Yalla</div>
+          </div>
+          <div class="mini-list">
+            <div class="mini-row"><span class="n">2</span><span class="nm">Lella Hadria<span>Ras Taguermess</span></span><span class="wv" style="background:var(--good-bg)" data-wave="good"></span></div>
+            <div class="mini-row"><span class="n">3</span><span class="nm">Vincci<span>Sidi Mahrez</span></span><span class="wv" style="background:var(--warn-bg)" data-wave="warn"></span></div>
+            <div class="mini-row"><span class="n">4</span><span class="nm">Sidi Jmour<span>Sidi Jmour</span></span><span class="wv" style="background:var(--bad-bg)" data-wave="bad"></span></div>
+          </div>
+        </div>
+      </div>
+      <span class="screen-note">Exemple d'écran</span>
+    </div>
+  </div>
+  <svg class="hero-sea" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 52 C180 20 360 20 540 50 S900 84 1080 52 1340 22 1440 40 V120 H0Z" fill="#14B8A6"/>
+    <path d="M0 80 C200 56 400 58 600 82 S980 106 1180 80 1380 62 1440 70 V120 H0Z" fill="#7FE3D6"/>
+    <path d="M0 104 C240 92 480 94 720 106 S1200 116 1440 102 V120 H0Z" fill="#F7F5F0"/>
+  </svg>
+</section>
+
+<!-- ——— Comment ça marche ——— -->
+<section id="comment" aria-labelledby="t-comment">
+  <div class="wrap">
+    <span class="kicker">Kifech ?</span>
+    <h2 id="t-comment">On regarde la mer pour toi</h2>
+    <p class="lead">Pas besoin de savoir lire une carte météo. L'app fait le travail et te répond simplement.</p>
+    <div class="steps">
+      <article class="step rise">
+        <div class="ic" style="background:var(--good-bg)" data-wave="good" data-big></div>
+        <h3>On lit la mer</h3>
+        <p>Le vent, les vagues, le courant et la couleur de l'eau, heure par heure, pour chaque plage. Une plage abritée du vent du jour reste calme : l'app le sait.</p>
+        <div class="legend">
+          <span><i class="wv" style="background:var(--good-bg)" data-wave="good"></i>Mer plate</span>
+          <span><i class="wv" style="background:var(--warn-bg)" data-wave="warn"></i>Ça bouge</span>
+          <span><i class="wv" style="background:var(--bad-bg)" data-wave="bad"></i>Trop de vagues</span>
+        </div>
+      </article>
+      <article class="step rise">
+        <div class="ic" style="background:#DCE7F7">
+          <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><rect x="5" y="22" width="8" height="13" rx="3" fill="#7FA6DB"/><rect x="16" y="8" width="8" height="27" rx="3" fill="#1450A3"/><rect x="27" y="16" width="8" height="19" rx="3" fill="#4B7EC6"/></svg>
+        </div>
+        <h3>On classe les plages</h3>
+        <p>La meilleure arrive en grand, en premier. Les autres suivent dessous, avec leur état de la mer d'un coup d'œil.</p>
+      </article>
+      <article class="step rise">
+        <div class="ic" style="background:var(--sand)">
+          <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><circle cx="20" cy="20" r="14" fill="none" stroke="#14B8A6" stroke-width="5" stroke-dasharray="8 3"/><circle cx="20" cy="6" r="5" fill="#E4473C"/></svg>
+        </div>
+        <h3>Tu choisis ton moment</h3>
+        <p>Tourne le soleil sur le cadran : ce soir, demain matin, samedi. Tu vois tout de suite quand la mer sera belle. Ensuite : <b>Yalla</b>, et l'itinéraire s'ouvre.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Installer ——— -->
+<section class="install" id="installer" aria-labelledby="t-install">
+  <div class="wrap">
+    <span class="kicker">7otha 3al écran</span>
+    <h2 id="t-install">L'avoir sur ton téléphone</h2>
+    <p class="lead">Pas besoin de store : l'app s'installe depuis le navigateur, en 10 secondes. Elle prend presque pas de place et se met à jour toute seule.</p>
+    <div class="grid">
+      <div>
+        <div class="tabs" role="tablist" aria-label="Ton téléphone">
+          <button role="tab" id="tab-ios" aria-controls="p-ios" aria-selected="true">iPhone</button>
+          <button role="tab" id="tab-and" aria-controls="p-and" aria-selected="false">Android</button>
+          <button role="tab" id="tab-pc" aria-controls="p-pc" aria-selected="false">Ordinateur</button>
+        </div>
+
+        <div role="tabpanel" id="p-ios" aria-labelledby="tab-ios">
+          <ol class="howto">
+            <li><span>Ouvre <a class="js-app" href="https://rzi11.github.io/WinN3oum/">l'app</a> dans <b>Safari</b>.</span></li>
+            <li><span>Touche le bouton <span class="k"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v9M4.5 4.5 8 1l3.5 3.5M3 7v7h10V7" fill="none" stroke="#1450A3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Partager</span> en bas de l'écran.</span></li>
+            <li><span>Descends et choisis <span class="k">Sur l'écran d'accueil</span>.</span></li>
+            <li><span>Touche <span class="k">Ajouter</span>. L'icône apparaît à côté de tes autres apps.</span></li>
+          </ol>
+          <p class="note">Si tu as ouvert le lien depuis WhatsApp ou Instagram, ouvre-le d'abord dans Safari : l'installation ne marche qu'à partir de Safari.</p>
+        </div>
+
+        <div role="tabpanel" id="p-and" aria-labelledby="tab-and" hidden>
+          <ol class="howto">
+            <li><span>Ouvre <a class="js-app" href="https://rzi11.github.io/WinN3oum/">l'app</a> dans <b>Chrome</b>.</span></li>
+            <li><span>Un bandeau <span class="k">Installer l'application</span> apparaît souvent tout seul : touche-le.</span></li>
+            <li><span>Sinon, touche le menu <span class="k">⋮</span> en haut à droite, puis <span class="k">Installer l'application</span> (ou <span class="k">Ajouter à l'écran d'accueil</span>).</span></li>
+            <li><span>Confirme avec <span class="k">Installer</span>. C'est fait.</span></li>
+          </ol>
+        </div>
+
+        <div role="tabpanel" id="p-pc" aria-labelledby="tab-pc" hidden>
+          <ol class="howto">
+            <li><span>Scanne le QR code avec l'appareil photo de ton téléphone.</span></li>
+            <li><span>Suis ensuite les étapes iPhone ou Android.</span></li>
+            <li><span>Sur ordinateur, l'app marche aussi : <a class="js-app" href="https://rzi11.github.io/WinN3oum/">ouvre-la dans le navigateur</a>.</span></li>
+          </ol>
+        </div>
+
+        <p class="inapp" id="inapp" hidden>Tu es dans le navigateur d'une autre app (Instagram, Facebook…). Ouvre cette page dans Safari ou Chrome pour pouvoir installer Win N3oum.</p>
+      </div>
+
+      <aside class="qr-card" id="qr" aria-label="QR code de l'app">
+        <img src="img/qr-app.svg" alt="QR code vers l'app Win N3oum" width="200" height="200">
+        <p>Scanne pour ouvrir l'app<br>sur ton téléphone</p>
+        <p class="url">rzi11.github.io/WinN3oum</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Les plages ——— -->
+<section class="beaches" id="plages" aria-labelledby="t-plages">
+  <div class="wrap">
+    <span class="kicker">Djerba d'abord</span>
+    <h2 id="t-plages"><span id="nb-plages">13</span> plages, <span id="nb-cotes">7</span> côtes</h2>
+    <p class="lead">Chaque côte a ses coins, avec les noms que tout le monde utilise sur l'île. Touche une côte pour la voir sur la carte.</p>
+    <div class="grid">
+      <div class="map" aria-hidden="true">
+        <span class="compass">N ↑</span>
+        <svg id="map" viewBox="0 0 400 336"></svg>
+      </div>
+      <div>
+        <div class="coasts" id="coasts"></div>
+        <p class="soon"><span class="tn">🇹🇳</span>Et bientôt toute la Tunisie : Hammamet, Mahdia, Kerkennah, Tabarka…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Aider ——— -->
+<section class="help" id="aider" aria-labelledby="t-aider">
+  <div class="wrap">
+    <span class="kicker" style="background:rgba(255,255,255,.7)">3awenna</span>
+    <h2 id="t-aider">Tu es sur place ? Dis-nous comment c'est</h2>
+    <p class="lead">Arrivé à la plage, touche <b>Wselt !</b> et réponds en quelques secondes. Ton retour aide tous ceux qui hésitent, et rend l'app plus juste chaque jour.</p>
+    <div class="grid">
+      <div class="card rise"><span class="em" aria-hidden="true">🌊</span><b>La mer</b><p>Plate, ça bouge, ou trop de vagues ?</p></div>
+      <div class="card rise"><span class="em" aria-hidden="true">💎</span><b>L'eau</b><p>Claire et turquoise, ou trouble ?</p></div>
+      <div class="card rise"><span class="em" aria-hidden="true">🌿</span><b>Les algues</b><p>Sur le sable, à l'entrée de l'eau, ou rien ?</p></div>
+      <div class="card rise"><span class="em" aria-hidden="true">👀</span><b>Ce que tu as vu</b><p>Une méduse ? Tu le dis, et l'info s'affiche pour la plage.</p></div>
+    </div>
+    <span class="wselt" aria-hidden="true">Wselt !</span>
+  </div>
+</section>
+
+<!-- ——— Sources ——— -->
+<section class="sources" aria-labelledby="t-sources">
+  <div class="wrap">
+    <span class="kicker">Mnin ?</span>
+    <h2 id="t-sources">D'où viennent les infos</h2>
+    <div class="grid">
+      <div class="src rise"><h3>Open-Meteo</h3><p>Vent, vagues, houle et température de l'eau, heure par heure, sur 7 jours.</p></div>
+      <div class="src rise"><h3>Copernicus Marine</h3><p>Le service européen d'observation des mers. Ses courants sont recalculés chaque nuit pour les côtes de Djerba.</p></div>
+      <div class="src rise"><h3>Les gens sur place</h3><p>Les retours « Wselt ! » de ceux qui sont à la plage. Ils comptent plus que toutes les prévisions.</p></div>
+    </div>
+    <div class="safe">
+      <svg class="flag" viewBox="0 0 34 34" aria-hidden="true"><path d="M8 4v27" stroke="#0F2440" stroke-width="2.5" stroke-linecap="round"/><path d="M9 5h17l-4 6 4 6H9z" fill="#E4473C"/></svg>
+      <p>Ce sont des prévisions : elles peuvent se tromper. Sur place, regarde toujours la mer, respecte les drapeaux et écoute les maîtres-nageurs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Questions ——— -->
+<section class="faq" id="questions" aria-labelledby="t-faq">
+  <div class="wrap">
+    <span class="kicker">Des questions ?</span>
+    <h2 id="t-faq">Les questions qu'on nous pose</h2>
+    <div class="list">
+      <details><summary>C'est vraiment gratuit ?</summary><p>Oui. Pas d'abonnement, pas de pub, pas de compte. Tu ouvres et ça marche.</p></details>
+      <details><summary>Pourquoi l'app n'est pas sur l'App Store ?</summary><p>C'est une app web : elle s'installe depuis le navigateur et se met à jour toute seule, sans rien télécharger. Une version App Store et Google Play viendra plus tard.</p></details>
+      <details><summary>Elle marche ailleurs qu'à Djerba ?</summary><p>Pour l'instant, Djerba seulement. Le reste de la Tunisie arrive : on ajoute les côtes une par une, avec leurs vrais noms.</p></details>
+      <details><summary>Et les méduses ?</summary><p>Quand quelqu'un en voit une, il le signale dans l'app, et l'info s'affiche pour la plage concernée. Pas d'alerte inventée : seulement ce que les gens ont vraiment vu.</p></details>
+      <details><summary>Elle a besoin de ma position ?</summary><p>Non, c'est toi qui choisis. Si tu l'autorises, l'app peut te montrer les plages les plus proches et vérifier que tu es bien à la plage quand tu donnes ton avis. Tout est expliqué sur la page <a href="confidentialite.html">Confidentialité</a>.</p></details>
+      <details><summary>Je peux me fier à 100 % ?</summary><p>C'est une prévision, donc pas toujours parfaite. Plus il y a de retours « Wselt ! », plus elle est juste. Sur place, la mer et les drapeaux ont toujours le dernier mot.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ——— Fin ——— -->
+<section class="end" aria-labelledby="t-end">
+  <div class="wrap">
+    <h2 id="t-end">Lyoum, win n<span class="three">3</span>oum <span class="q">?</span></h2>
+    <p>La réponse est dans l'app.</p>
+    <a class="btn btn-main js-app" href="https://rzi11.github.io/WinN3oum/">Yalla, ouvrir l'app</a>
+  </div>
+  <svg class="sea" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 30 C200 6 400 6 600 30 S1000 54 1200 30 1380 12 1440 20 V90 H0Z" fill="#14B8A6"/>
+    <path d="M0 58 C220 40 440 42 660 60 S1100 76 1440 56 V90 H0Z" fill="#0E3C7D"/>
+  </svg>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Win N3oum ? · Fait à Djerba, avec amour 🌊</span>
+    <nav aria-label="Liens">
+      <a class="js-app" href="https://rzi11.github.io/WinN3oum/">L'app</a>
+      <a href="confidentialite.html">Confidentialité</a>
+      <a href="https://github.com/Rzi11/WinN3oum/issues">Nous écrire</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const APP_URL = "https://rzi11.github.io/WinN3oum/";
+
+  /* Les petits dessins de la mer (les mêmes que dans l'app : A3, double trait) */
+  const C = {good:"#1E8A5A", warn:"#B86A0A", bad:"#C9362C"}, L = {good:"#9FD6B8", warn:"#E9C38D", bad:"#EFA49D"};
+  function waveSVG(k){
+    const c = C[k], l = L[k];
+    const body = k==="good" ? `<path d="M5 25 Q17 21 29 25 T53 25 T60 24" stroke="${c}"/><path d="M5 33 Q17 29 29 33 T53 33 T60 32" stroke="${l}"/>`
+      : k==="warn" ? `<path d="M4 35 C14 35 18 18 31 17 C40 16.5 45 22.5 42 27.5 C40 30.5 35 29.5 35 25.5" stroke="${c}"/><path d="M4 42 C16 42 22 31 34 31 C44 31 50 40 60 38" stroke="${l}"/>`
+      : `<path d="M4 38 C10 38 14 27 18 20 C24 8 40 4 50 10 C58 15 57 26 49 28 C43 29.5 40 24 45 20" stroke="${c}" stroke-width="4.8"/><path d="M4 45 C14 45 20 36 30 35 C40 34 46 42 60 42" stroke="${l}"/><circle cx="57" cy="6" r="2.4" fill="${c}" stroke="none"/><circle cx="60" cy="13" r="1.8" fill="${c}" stroke="none"/>`;
+    return `<svg viewBox="0 0 64 48" aria-hidden="true" fill="none" stroke-width="4.5" stroke-linecap="round">${body}</svg>`;
+  }
+  document.querySelectorAll("[data-wave]").forEach(e => {
+    e.innerHTML = waveSVG(e.dataset.wave);
+    if (e.hasAttribute("data-big")) { const s = e.firstChild; s.setAttribute("width","46"); s.setAttribute("height","34"); }
+  });
+
+  /* En-tête : un trait quand on défile */
+  const top = document.getElementById("top");
+  addEventListener("scroll", () => top.classList.toggle("scrolled", scrollY > 8), {passive:true});
+
+  /* Installer : le bon onglet selon le téléphone */
+  const ua = navigator.userAgent;
+  const isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const isAndroid = /Android/.test(ua);
+  const inApp = /Instagram|FBAN|FBAV|FB_IAB|Line\/|Snapchat|TikTok/i.test(ua);
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  function show(id){
+    tabs.forEach(t => {
+      const on = t.id === id;
+      t.setAttribute("aria-selected", on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    document.getElementById("qr").classList.toggle("show", id === "tab-pc");
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => show(t.id));
+    t.addEventListener("keydown", e => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const n = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+      show(n.id); n.focus();
+    });
+  });
+  show(isIOS ? "tab-ios" : isAndroid ? "tab-and" : "tab-pc");
+  if (inApp) document.getElementById("inapp").hidden = false;
+
+  /* La carte de Djerba : sable = terre, bleu Sidi Bou = mer */
+  const COTES = [
+    {id:"ras-rmel", name:"Ras R'mel", desc:"Presqu'île nord, face à Houmt Souk"},
+    {id:"sidi-mahrez", name:"Sidi Mahrez", desc:"Zone touristique, nord-est"},
+    {id:"ras-taguermess", name:"Ras Taguermess", desc:"Cap nord-est, autour du phare"},
+    {id:"la-seguia", name:"El Seguia", desc:"Côte est"},
+    {id:"aghir", name:"Aghir", desc:"Côte sud-est"},
+    {id:"cote-ouest", name:"Cheikh Yahya", desc:"Entre Ajim et Sidi Jmour"},
+    {id:"sidi-jmour", name:"Sidi Jmour", desc:"Nord-ouest, couchers de soleil"}
+  ];
+  const PLAGES = [
+    ["ras-rmel","Ras R'mel",33.91099,10.90351],
+    ["sidi-mahrez","El Hachen",33.87518,10.95606],["sidi-mahrez","El Jazira",33.86772,10.96714],
+    ["sidi-mahrez","Sunset",33.8638,10.97523],["sidi-mahrez","Vincci",33.84558,10.99663],["sidi-mahrez","Bowling",33.830158,11.025309],
+    ["ras-taguermess","Yati 1",33.82651,11.05299],["ras-taguermess","Yati 2",33.81446,11.05474],["ras-taguermess","Lella Hadria",33.79728,11.05839],
+    ["la-seguia","El Seguia",33.78754,11.0582],["aghir","Aghir",33.76479,11.02568],
+    ["cote-ouest","Cheikh Yahya",33.78435,10.74144],["sidi-jmour","Sidi Jmour",33.83349,10.74849]
+  ];
+  document.getElementById("nb-plages").textContent = PLAGES.length;
+  document.getElementById("nb-cotes").textContent = COTES.length;
+
+  const K = 1200, LON0 = 10.70, LAT0 = 33.94, COS = Math.cos(33.8 * Math.PI / 180);
+  const P = (lat, lon) => [((lon - LON0) * COS * K).toFixed(1), ((LAT0 - lat) * K).toFixed(1)];
+  /* Contour simplifié de l'île (lat, lon) */
+  const OUTLINE = [[33.845,10.738],[33.862,10.775],[33.874,10.815],[33.882,10.850],[33.886,10.872],[33.898,10.884],[33.912,10.896],[33.918,10.906],
+    [33.912,10.912],[33.898,10.920],[33.884,10.935],[33.874,10.955],[33.863,10.976],[33.845,10.999],[33.832,11.024],[33.826,11.046],
+    [33.818,11.060],[33.800,11.063],[33.786,11.062],[33.772,11.045],[33.762,11.030],[33.745,11.018],[33.722,11.006],[33.700,10.996],
+    [33.684,10.982],[33.688,10.950],[33.698,10.910],[33.708,10.870],[33.712,10.830],[33.704,10.792],[33.712,10.760],[33.728,10.738],
+    [33.752,10.730],[33.778,10.734],[33.806,10.738],[33.828,10.736]];
+  const svg = document.getElementById("map"), NS = "http://www.w3.org/2000/svg";
+  const mk = (tag, attrs, parent = svg) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
+  /* petites vagues dans la mer */
+  for (let i = 0; i < 9; i++) {
+    const x = 20 + (i * 97) % 360, y = 30 + (i * 61) % 290;
+    mk("path", {d:`M${x} ${y} q6 -5 12 0 t12 0`, fill:"none", stroke:"#4B7EC6", "stroke-width":2, "stroke-linecap":"round", opacity:.6});
+  }
+  mk("path", {class:"isl", d:"M" + OUTLINE.map(p => P(...p).join(" ")).join(" L") + "Z", "stroke-linejoin":"round"});
+  /* la chaussée romaine vers El Kantara */
+  const k1 = P(33.690,10.990), k2 = P(33.660,11.010);
+  mk("path", {d:`M${k1[0]} ${k1[1]} L${k2[0]} ${k2[1]}`, stroke:"#D9BF8F", "stroke-width":4, "stroke-linecap":"round"});
+  [["Houmt Souk",33.873,10.858],["Midoun",33.808,10.992],["Ajim",33.725,10.752],["Guellala",33.735,10.860]].forEach(([n, la, lo]) => {
+    const [x, y] = P(la, lo); mk("circle", {cx:x, cy:y, r:2.5, fill:"#8A6F45"}); const t = mk("text", {class:"town", x:+x + 5, y:+y + 4}); t.textContent = n;
+  });
+  const dots = PLAGES.map((p, i) => {
+    const [x, y] = P(p[2], p[3]);
+    const g = mk("g", {class:"dot", "data-cote":p[0], tabindex:-1});
+    mk("circle", {cx:x, cy:y, r:6.5}, g);
+    const t = mk("text", {x, y}, g); t.textContent = i + 1;
+    const ti = mk("title", {}, g); ti.textContent = p[1];
+    g.addEventListener("click", () => pick(p[0]));
+    return g;
+  });
+
+  const list = document.getElementById("coasts");
+  const btns = COTES.map(c => {
+    const b = document.createElement("button");
+    b.className = "coast"; b.type = "button"; b.dataset.cote = c.id;
+    const spots = PLAGES.map((p, i) => [p, i]).filter(([p]) => p[0] === c.id);
+    b.innerHTML = `<b>${c.name}</b><small>${c.desc}</small>` +
+      (spots.length > 1 || spots[0][0][1] !== c.name ? `<span class="spots">${spots.map(([p, i]) => `<span>${i + 1} · ${p[1]}</span>`).join("")}</span>` : "");
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", () => pick(c.id));
+    list.appendChild(b);
+    return b;
+  });
+  function pick(id){
+    btns.forEach(b => { const on = b.dataset.cote === id; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+    dots.forEach(d => { const on = d.dataset.cote === id; d.classList.toggle("on", on); d.querySelector("circle").setAttribute("r", on ? 8 : 6.5); });
+  }
+  pick("ras-taguermess");
+
+  /* Apparition douce au défilement */
+  if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.15});
+    document.querySelectorAll(".rise").forEach((e, i) => { e.style.transitionDelay = (i % 4) * 80 + "ms"; io.observe(e); });
+  } else document.querySelectorAll(".rise").forEach(e => e.classList.add("in"));
+})();
+</script>
+</body>
+</html>
