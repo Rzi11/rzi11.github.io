@@ -1,8 +1,8 @@
 # Site de Win N3oum ?
 
-Le site de présentation de l'app, en ligne sur https://rzi11.github.io/
+Le site de présentation de l'app, en ligne sur https://winn3oum.gaythmejai.com/
 
-L'app elle-même vit dans un autre dépôt, `Rzi11/WinN3oum`, et reste à https://rzi11.github.io/WinN3oum/
+L'app elle-même vit dans un autre dépôt, `Rzi11/WinN3oum`, et reste à https://winn3oum.gaythmejai.com/WinN3oum/
 
 ## Contenu
 - `index.html` : la page du site (tout est dedans : textes, styles, carte de Djerba)
